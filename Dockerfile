@@ -6,7 +6,7 @@ ENV PKG_CONFIG_SYSROOT_DIR=/
 RUN rustup target add aarch64-unknown-linux-gnu
 RUN rustup component add clippy
 RUN curl -L --proto '=https' --tlsv1.2 -sSf https://raw.githubusercontent.com/cargo-bins/cargo-binstall/main/install-from-binstall-release.sh | bash
-RUN cargo binstall -y cargo-audit cargo-outdated
+RUN cargo binstall -y cargo-audit cargo-outdated cargo-nextest
 RUN cargo install cargo-tarpaulin
 RUN dpkg --add-architecture arm64
 RUN curl https://deepviewml.com/apt/key.pub | gpg --batch --yes --dearmor -o /usr/share/keyrings/deepviewml.gpg

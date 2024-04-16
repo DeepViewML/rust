@@ -1,4 +1,4 @@
-ARG RUST_VERSION=1.77
+ARG RUST_VERSION=1.77.2
 ARG DEBIAN_VERSION=bullseye
 
 FROM rust:${RUST_VERSION}-${DEBIAN_VERSION}
@@ -14,6 +14,7 @@ RUN apt-get update && apt-get -y install \
 	cmake \
 	gcc-aarch64-linux-gnu \
 	g++-aarch64-linux-gnu \
+	nasm \
 	libvideostream libvideostream:arm64 \
 	libvaal libvaal:arm64
  

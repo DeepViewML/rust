@@ -1,4 +1,4 @@
-ARG RUST_VERSION=1.77.2
+ARG RUST_VERSION=1.78.0
 ARG DEBIAN_VERSION=bullseye
 
 FROM rust:${RUST_VERSION}-${DEBIAN_VERSION}
@@ -17,4 +17,3 @@ RUN apt-get update && apt-get -y install \
 	nasm \
 	libvideostream libvideostream:arm64 \
 	libvaal libvaal:arm64
- 

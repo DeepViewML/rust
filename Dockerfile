@@ -14,6 +14,10 @@ RUN apt-get update && apt-get -y install \
 	cmake \
 	gcc-aarch64-linux-gnu \
 	g++-aarch64-linux-gnu \
+	python3 \
+	python3-setuptools \
+	python3-wheel \
+	python3-pip \
 	nasm \
 	libvideostream libvideostream:arm64 \
 	libvaal libvaal:arm64

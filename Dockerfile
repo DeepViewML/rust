@@ -1,4 +1,4 @@
-ARG RUST_VERSION=1.80.0
+ARG RUST_VERSION=1.84.0
 ARG DEBIAN_VERSION=bullseye
 
 FROM rust:${RUST_VERSION}-${DEBIAN_VERSION}
@@ -8,8 +8,9 @@ RUN rustup component add clippy
 RUN curl -L --proto '=https' --tlsv1.2 -sSf https://raw.githubusercontent.com/cargo-bins/cargo-binstall/main/install-from-binstall-release.sh | bash
 RUN cargo install cargo-audit cargo-outdated cargo-nextest cargo-tarpaulin cargo-sonar
 RUN dpkg --add-architecture arm64
-RUN curl https://deepviewml.com/apt/key.pub | gpg --batch --yes --dearmor -o /usr/share/keyrings/deepviewml.gpg
-RUN echo 'deb [signed-by=/usr/share/keyrings/deepviewml.gpg] https://deepviewml.com/apt stable main' > /etc/apt/sources.list.d/deepviewml.list
+#RUN curl https://deepviewml.com/apt/key.pub | gpg --batch --yes --dearmor -o /usr/share/keyrings/deepviewml.gpg
+#RUN echo 'deb [signed-by=/usr/share/keyrings/deepviewml.gpg] https://deepviewml.com/apt stable main' > /etc/apt/sources.list.d/deepviewml.list
+RUN echo 'deb [trusted=yes] https://deepviewml.com/apt stable main' > /etc/apt/sources.list.d/deepviewml.list
 RUN apt-get update && apt-get -y install \
 	cmake \
 	gcc-aarch64-linux-gnu \

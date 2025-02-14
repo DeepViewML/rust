@@ -1,9 +1,16 @@
-ARG RUST_VERSION=1.84.0
+ARG RUST_VERSION=1.84.1
 ARG DEBIAN_VERSION=bullseye
 
 FROM rust:${RUST_VERSION}-${DEBIAN_VERSION}
 ENV PKG_CONFIG_SYSROOT_DIR=/
+RUN curl https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip -o /tmp/awscliv2.zip && \
+	unzip /tmp/awscliv2.zip -d /tmp && \
+	rm /tmp/awscliv2.zip && \
+	/tmp/aws/install && \
+	rm -rf /tmp/aws
+RUN rustup toolchain install nightly
 RUN rustup target add aarch64-unknown-linux-gnu
+RUN rustup target add --toolchain nightly aarch64-unknown-linux-gnu
 RUN rustup component add clippy
 RUN curl -L --proto '=https' --tlsv1.2 -sSf https://raw.githubusercontent.com/cargo-bins/cargo-binstall/main/install-from-binstall-release.sh | bash
 RUN cargo install --locked cargo-audit cargo-outdated cargo-nextest cargo-tarpaulin cargo-sonar clippy-sarif

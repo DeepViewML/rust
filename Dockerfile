@@ -25,5 +25,7 @@ RUN apt-get update && apt-get -y install \
 	python3-wheel \
 	python3-pip \
 	nasm \
+	patchelf \
+	liblzma-dev liblzma-dev:arm64 \
 	libvideostream-dev libvideostream:arm64 \
 	libvaal-dev libvaal:arm64

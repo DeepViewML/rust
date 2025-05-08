@@ -15,6 +15,7 @@ RUN rustup component add clippy
 RUN curl -L --proto '=https' --tlsv1.2 -sSf https://raw.githubusercontent.com/cargo-bins/cargo-binstall/main/install-from-binstall-release.sh | bash
 RUN cargo install --locked cargo-audit cargo-outdated cargo-nextest cargo-tarpaulin cargo-sonar cargo-export clippy-sarif
 RUN dpkg --add-architecture arm64
+RUN echo 'deb [trusted=yes] https://deepviewml.com/apt stable main' > /etc/apt/sources.list.d/deepviewml.list
 RUN apt-get update && apt-get -y install \
 	cmake \
 	gcc-aarch64-linux-gnu \
@@ -25,4 +26,8 @@ RUN apt-get update && apt-get -y install \
 	python3-pip \
 	nasm \
 	patchelf \
-	liblzma-dev liblzma-dev:arm64
+	libsystemd-dev libsystemd-dev:arm64 \
+	libsqlite3-dev libsqlite3-dev:arm64 \
+	liblzma-dev liblzma-dev:arm64 \
+	libvideostream-dev libvideostream:arm64 \
+	libvaal-dev libvaal:arm64

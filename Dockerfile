@@ -1,4 +1,4 @@
-ARG RUST_VERSION=1.87.0
+ARG RUST_VERSION=1.88.0
 ARG DEBIAN_VERSION=bullseye
 
 FROM rust:${RUST_VERSION}-${DEBIAN_VERSION}
@@ -17,6 +17,7 @@ RUN cargo install --locked cargo-audit cargo-outdated cargo-nextest cargo-tarpau
 RUN dpkg --add-architecture arm64
 RUN echo 'deb [trusted=yes] https://deepviewml.com/apt stable main' > /etc/apt/sources.list.d/deepviewml.list
 RUN apt-get update && apt-get -y install \
+	git-lfs \
 	cmake \
 	gcc-aarch64-linux-gnu \
 	g++-aarch64-linux-gnu \
@@ -26,6 +27,7 @@ RUN apt-get update && apt-get -y install \
 	python3-pip \
 	nasm \
 	patchelf \
+	libssl-dev libssl-dev:arm64 \
 	libsystemd-dev libsystemd-dev:arm64 \
 	libsqlite3-dev libsqlite3-dev:arm64 \
 	liblzma-dev liblzma-dev:arm64 \
